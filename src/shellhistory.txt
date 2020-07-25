@@ -15,19 +15,19 @@ diskutil list #查看要用的设备
 sudo mount -t ntfs -o rw,auto,nobrowse /dev/disk2s3 /Volumes/win  #装载ntfs系统
 find . -type d -empty -exec touch {}/.gitignore \ #给所有的子空目录都添加gitignore文件
 ####################################正则表达式#########################################################
-1、grep ‘.html’ log.txt | grep -v ‘_’ | grep -v ‘-‘ | cut -f 1 -d ‘.’ > log2.txt
-2、grep ‘^[a-z][a-z][a-z]-‘ tmp.txt | cut -d ‘.’ -f 1 > tmp2.txt #可以改成'^[a-z]{3}-‘吧
-3、cut -d ':' -f 1 a.txt | cut -d ‘"' -f 2 >b.txt
-4、cut -d ‘:' -f 1 a.txt | cut -d ‘"' -f 2 >b.txt
-cut -d ‘:' -f 2 a.txt | cut -d ‘,' -f 1 >>b.txt
-5、sort para_en.txt | uniq | grep -v '_' | grep -v ‘-' | cut -f 1 -d '.' > en.txt
-6、sort msp_para_en.txt | uniq | tr 'A-Z' 'a-z' > msp_en.txt
-7、ls | grep 'alm-[0-9]' | cut -f 2 -d '-' | cut -f 1 -d '.' | sort > a.txt
-8、ls | grep '^[a-z]' | cut -d ‘.' -f 1 | sed 's/-/\/' |  tr 'a-z' 'A-Z' | sort > a.txt
-9、ls | grep -v '_' | grep -v '-' | cut -d '.' -f 1 | sort > a.txt
-10、sort tmp.txt | uniq > tmp2.txt && rm tmp.txt && mv tmp2.txt tmp.txt
-11、cat tmp.txt | tr 'A-Z' 'a-z' | sort | uniq > tmp2.txt && rm tmp.txt && mv tmp2.txt tmp.txt
-12、history | awk '{print $4, $5}' | sed 's/sudo//' | awk '{print $1}' | sort | uniq -c | sort | tail | sort -r
+1.grep ‘.html’ log.txt | grep -v ‘_’ | grep -v ‘-‘ | cut -f 1 -d ‘.’ > log2.txt #取含-但不含_的不含后缀的文件名
+2.grep ‘^[a-z][a-z][a-z]-‘ tmp.txt | cut -d ‘.’ -f 1 > tmp2.txt #三个字母开头的不含后缀的文件名，可以改成'^[a-z]{3}-‘吧
+3.cut -d ':' -f 1 a.txt | cut -d '"' -f 2 >b.txt
+4.cut -d ':' -f 1 a.txt | cut -d '"' -f 2 >b.txt
+5.cut -d ':' -f 2 a.txt | cut -d ',' -f 1 >>b.txt
+6.sort para_en.txt | uniq | grep -v '_' | grep -v '-' | cut -f 1 -d '.' > en.txt #排序、去重、不含_、含-、去后缀
+7.sort msp_para_en.txt | uniq | tr 'A-Z' 'a-z' > msp_en.txt #排序、去重、大写变小写
+8.ls | grep 'alm-[0-9]' | cut -f 2 -d '-' | cut -f 1 -d '.' | sort > a.txt #匹配、切割、去后缀、排序
+9.ls | grep '^[a-z]' | cut -d ‘.' -f 1 | sed 's/-/\/' |  tr 'a-z' 'A-Z' | sort > a.txt #匹配开头、分割、字符替换、小写变大写、排序
+10.ls | grep -v '_' | grep -v '-' | cut -d '.' -f 1 | sort > a.txt
+11.sort tmp.txt | uniq > tmp2.txt && rm tmp.txt && mv tmp2.txt tmp.txt #排序、去重、替换原文件
+12.cat tmp.txt | tr 'A-Z' 'a-z' | sort | uniq > tmp2.txt && rm tmp.txt && mv tmp2.txt tmp.txt
+13.history | awk '{print $4, $5}' | sed 's/sudo//' | awk '{print $1}' | sort | uniq -c | sort | tail | sort -r #应该是找出使用比较多的命令
 ####################################脚本相关#########################################################
 for i in $(seq 1 19);do mv file$i.flv outfile$i.flv;done #批量移动文件
 for i in $(seq 1 19);do echo "file 'outfile$i.flv'" >>list3.txt;done #批量输出字符
