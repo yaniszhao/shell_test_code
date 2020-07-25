@@ -1,3 +1,8 @@
+1.若文件或目录有空格：变量赋值要加""，变量使用的时候要用""，用ls分割文件的时候要改IFS=$'\n'
+2.分隔符:ls分隔符是回车吗，为什么显示的是tab
+3.##*和%%*的用法https://www.cnblogs.com/Raymontian/p/7111045.html
+4.$( ), ${ }, $'', ` `,
+5.awk, seq, xarg, seq, find, cat, uniq, grep,expect
 ####################################编辑相关#########################################################
 Ctrl+a: 跳到命令行首
 Ctrl+e: 跳到命令行尾
@@ -13,7 +18,7 @@ vi使用命令set hlsearch可以高亮搜索字符
 ####################################系统相关#########################################################
 diskutil list #查看要用的设备
 sudo mount -t ntfs -o rw,auto,nobrowse /dev/disk2s3 /Volumes/win  #装载ntfs系统
-find . -type d -empty -exec touch {}/.gitignore \ #给所有的子空目录都添加gitignore文件
+find . -type d -empty -exec touch {}/.gitignore \ #给所有的子空目录都添加gitignore文件，可以改成.gitkeep
 ####################################正则表达式#########################################################
 1.grep ‘.html’ log.txt | grep -v ‘_’ | grep -v ‘-‘ | cut -f 1 -d ‘.’ > log2.txt #取含-但不含_的不含后缀的文件名
 2.grep ‘^[a-z][a-z][a-z]-‘ tmp.txt | cut -d ‘.’ -f 1 > tmp2.txt #三个字母开头的不含后缀的文件名，可以改成'^[a-z]{3}-‘吧
