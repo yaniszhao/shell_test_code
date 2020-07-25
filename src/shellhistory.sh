@@ -19,7 +19,8 @@ vi使用命令set hlsearch可以高亮搜索字符
 ####################################系统相关#########################################################
 diskutil list #查看要用的设备
 sudo mount -t ntfs -o rw,auto,nobrowse /dev/disk2s3 /Volumes/win  #装载ntfs系统
-find . -type d -empty -exec touch {}/.gitignore \ #给所有的子空目录都添加gitignore文件，可以改成.gitkeep
+find . -type d -empty -exec touch {}/.gitignore \; #给所有的子空目录都添加gitignore文件，可以改成.gitkeep
+find . -type d -empty |xargs -t -I {} touch {}/.gitignore #用这个方法还可以看到touch了哪些文件，-exec的没有
 ####################################正则表达式#########################################################
 1.grep ‘.html’ log.txt | grep -v ‘_’ | grep -v ‘-‘ | cut -f 1 -d ‘.’ > log2.txt #取含-但不含_的不含后缀的文件名
 2.grep ‘^[a-z][a-z][a-z]-‘ tmp.txt | cut -d ‘.’ -f 1 > tmp2.txt #三个字母开头的不含后缀的文件名，可以改成'^[a-z]{3}-‘吧
